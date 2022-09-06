@@ -1,28 +1,4 @@
-<?php
- if(isset($_POST['SubmitButton'])){ // Check if form was submitted
-  include 'config.php';
-       
-        $education=array($_POST['sname'],$_POST['ecity'],$_POST['estate'],$_POST['edegree'],$_POST['fstudy'],$_POST['sdate'],$_POST['edate']);
-      
-        $sql = "INSERT INTO education
-        VALUES (NULL,'$education[0]',
-         '$education[1]',
-          '$education[2]',
-          '$education[3]',
-          '$education[4]',
-          '$education[5]',
-          '$education[6]')";
-        
-        if ($conn->query($sql) === TRUE) {
-    header('Location: skills.php');
-          
-        } else {
-          echo "<script>alert('Error:  $sql  <br>  $conn->error')</script>";
-        }
-        
-        $conn->close();
-      }
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,6 +15,38 @@
 <?php
   include 'navbar.php'
   ?>
+  <?php
+ if(isset($_POST['SubmitButton']) || isset($_POST['SubmitButton1'])){ // Check if form was submitted
+  include 'config.php';
+       
+  $userid=$_SESSION['uid'];
+        $education=array($_POST['sname'],$_POST['ecity'],$_POST['estate'],$_POST['edegree'],$_POST['fstudy'],$_POST['sdate'],$_POST['edate']);
+      
+        $sql = "INSERT INTO education
+        VALUES (NULL,'$education[0]',
+         '$education[1]',
+          '$education[2]',
+          '$education[3]',
+          '$education[4]',
+          '$education[5]',
+          '$education[6]',
+          '$userid')";
+        
+        if ($conn->query($sql) === TRUE) {
+    if(isset($_POST['SubmitButton'])){
+    header('Location: skills.php');
+            }
+            else if(isset($_POST['SubmitButton1'])){
+              header('Location: education.php');
+            }
+          
+        } else {
+          echo "<script>alert('Error:  $sql  <br>  $conn->error')</script>";
+        }
+        
+        $conn->close();
+      }
+?>
   <div class="container">
     <div class="row mt-3">
       <h1 class="text-success fw-bolder">Education</h1>
@@ -76,9 +84,9 @@
     </div>
     
   </div>
-  <div class="row mt-3 d-flex justify-content-center">
+  <div class="row d-flex justify-content-center">
     <div class="col-3">
-  <a href="experience.php" class="px-4 text-decoration-none  mt-5 text-success">Add more education</a>
+    <button type="submit" name="SubmitButton1" id="btn1"class="px-4 text-decoration-none btn btn-link btn-outline-light text-success mt-5" style="">Add more Education</button>
     </div>
   </div>
   <div class="row d-flex justify-content-center">

@@ -2,7 +2,8 @@
  if(isset($_POST['SubmitButton'])){ // Check if form was submitted
   include 'config.php';
        
-        $personal_info=array($_POST['fname'],$_POST['lname'],$_POST['address'],$_POST['city'],$_POST['zipcode'],$_POST['country'],$_POST['email'],$_POST['phoneno']);
+        $personal_info=array($_POST['fname'],$_POST['lname'],$_POST['address'],$_POST['city'],$_POST['zipcode'],$_POST['country'],$_POST['email'],$_POST['phoneno']
+      ,$_POST['linkedin'],$_POST['github'],$_POST['twiter'],$_POST['website']);
       
         $sql = "INSERT INTO personal_info
         VALUES (NULL,'$personal_info[0]',
@@ -12,7 +13,13 @@
           '$personal_info[4]',
           '$personal_info[5]',
           '$personal_info[6]',
-          '$personal_info[7]')";
+          '$personal_info[7]'),
+          '$personal_info[8]'),
+          '$personal_info[9]'),
+          '$personal_info[10]',
+          '$personal_info[11]')
+          
+          ";
         
         if ($conn->query($sql) === TRUE) {
     header('Location: experience.php');
@@ -65,6 +72,20 @@
     </div>
     <div class="col">
       <input  required type="text" class="form-control" placeholder="Country"  name="country">
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col">
+      <input  required type="text" class="form-control" placeholder="Linkedin"  name="linkedin">
+    </div>
+    <div class="col">
+      <input  required type="text" class="form-control" placeholder="Github"  name="github">
+    </div>
+    <div class="col">
+      <input  required type="text" class="form-control" placeholder="Twiter"  name="twiter">
+    </div>
+    <div class="col">
+      <input  required type="text" class="form-control" placeholder="Website"  name="website">
     </div>
   </div>
   <div class="row mt-2">
