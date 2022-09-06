@@ -13,9 +13,9 @@
           '$personal_info[4]',
           '$personal_info[5]',
           '$personal_info[6]',
-          '$personal_info[7]'),
-          '$personal_info[8]'),
-          '$personal_info[9]'),
+          '$personal_info[7]',
+          '$personal_info[8]',
+          '$personal_info[9]',
           '$personal_info[10]',
           '$personal_info[11]')
           
