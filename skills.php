@@ -1,26 +1,4 @@
-<?php
- if(isset($_POST['SubmitButton'])){ // Check if form was submitted
-  include 'config.php';
-       
-        $skill=array($_POST['s1'],$_POST['s2'],$_POST['s3'],$_POST['s4'],$_POST['s5']);
-      // print_r($skill);
-        $sql = "INSERT INTO skill
-        VALUES (NULL,'$skill[0]',
-         '$skill[1]',
-          '$skill[2]',
-          '$skill[3]',
-          '$skill[4]')";
-        
-        if ($conn->query($sql) === TRUE) {
-    header('Location: summary.php');
-          
-        } else {
-          echo "<script>alert('Error:  $sql  <br>  $conn->error')</script>";
-        }
-        
-        $conn->close();
-      }
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,34 +16,44 @@
 <?php
   include 'navbar.php'
   ?>
+  <?php
+ if(isset($_POST['SubmitButton'])|| isset($_POST['SubmitButton1'])){ // Check if form was submitted
+  include 'config.php';
+  $userid=$_SESSION['uid'];
+       
+        $skill=array($_POST['s1']);
+      // print_r($skill);
+        $sql = "INSERT INTO skill
+        VALUES (NULL,'$skill[0]','$userid')";
+        
+        if ($conn->query($sql) === TRUE) {
+          if(isset($_POST['SubmitButton'])){
+            header('Location: summary.php');
+                  }
+                  else if(isset($_POST['SubmitButton1'])){
+                    header('Location: skills.php');
+                  }
+          
+        } else {
+          echo "<script>alert('Error:  $sql  <br>  $conn->error')</script>";
+        }
+        
+        $conn->close();
+      }
+?>
   <div class="container">
     <div class="row mt-3">
-      <h1 class="text-success fw-bolder">Skills</h1>
+      <h1 class="text-success fw-bolder">Add Skill</h1>
 
     <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
   <div class="row mt-2">
     <div class="col">
-      <input  required  type="text" class="form-control" placeholder="Skill 1"  name="s1">
+      <input  required  type="text" class="form-control" placeholder="Skill"  name="s1">
     </div>
   </div>
-  <div class="row mt-2">
-    <div class="col">
-      <input  required  type="text" class="form-control" placeholder="Skill 2" name="s2">
-    </div>
-  </div>
-  <div class="row mt-2">
-    <div class="col">
-      <input  required  type="text" class="form-control" placeholder="Skill 3" name="s3">
-    </div>
-  </div>
-  <div class="row mt-2">
-    <div class="col">
-      <input  required  type="text" class="form-control" placeholder="Skill 4" name="s4">
-    </div>
-  </div>
-  <div class="row mt-2">
-    <div class="col">
-      <input  required  type="text" class="form-control" placeholder="Skill 5" name="s5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-3">
+    <button type="submit" name="SubmitButton1" id="btn1"class="px-4 text-decoration-none btn btn-link btn-outline-light text-success mt-5" style="">Add more Skills</button>
     </div>
   </div>
   <div class="row d-flex justify-content-center">

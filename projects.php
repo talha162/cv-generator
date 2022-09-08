@@ -35,7 +35,7 @@
         if ($conn->query($sql) === TRUE) {
           // echo "<script>alert('r')</script>";
           if(isset($_POST['SubmitButton'])){
-            header('Location: selecttemplate.php');
+            header('Location: languages.php');
           }
           else if(isset($_POST['SubmitButton1'])){
             header('Location: projects.php');

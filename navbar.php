@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
       <li class="nav-item   text-center px-2">
-          <a class="nav-link text-light" href="#" id="navbarDropdownMenuLink" role="button" >
+          <a class="nav-link text-light" href="cvmain.php" id="navbarDropdownMenuLink" role="button" >
             Home
           </a>
         </li>
